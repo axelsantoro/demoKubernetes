@@ -2,7 +2,6 @@ pipeline {
 
     agent any
 
-    sh 'echo hola1'
     stages {
 
         agent {
@@ -17,7 +16,6 @@ pipeline {
 
             steps {
 
-                sh 'echo hola'
                 sh 'gradle build'
                 sh 'gradle test'
             }
