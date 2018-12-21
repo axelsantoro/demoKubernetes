@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,9 +8,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Ping {
 
-    @GetMapping(value = "/ping")
-    public ResponseEntity<String> ping() {
+    @Value("${api.version}")
+    String version;
 
-        return ResponseEntity.ok("Pong");
+    @GetMapping(value = "/ping")
+    public ResponseEntity<ResponseDto> ping() {
+
+        ResponseDto response = new ResponseDto();
+        response.setHealth("OK");
+        response.setVersion(version);
+        response.setMessage("Pong");
+
+        return ResponseEntity.ok(response);
     }
 }

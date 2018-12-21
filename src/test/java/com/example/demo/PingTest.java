@@ -13,11 +13,12 @@ public class PingTest {
     private Ping resource = new Ping();
 
     @Test
-    public void cuandoSeHacePingRespondePong() {
+    public void cuandoSeHacePingRespondeElMensajePong() {
 
-        ResponseEntity<String> pong = resource.ping();
+        ResponseEntity<ResponseDto> pong = resource.ping();
 
         assert pong.getBody() != null;
-        assert pong.getBody().equals("Pong");
+        assert pong.getBody().getMessage().equals("Pong");
+        assert pong.getBody().getHealth().equals("OK");
     }
 }
