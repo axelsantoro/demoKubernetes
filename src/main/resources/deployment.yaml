@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: demo-k8s-container
-        image: axelsantoro/prueba-docker:latest
+        image: axelsantoro/prueba-docker:1.0.0
         env:
         ports:
         - name: http
@@ -36,3 +36,17 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 10
           timeoutSeconds: 3
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /demo
+        backend:
+          serviceName: kubernetes
+          servicePort: 80
