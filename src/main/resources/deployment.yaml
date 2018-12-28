@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: demo-k8s-container
-        image: axelsantoro/prueba-docker:1.0.0
+        image: axelsantoro/prueba-docker:1.0.4
         env:
         ports:
         - name: http
